@@ -76,14 +76,17 @@ def generate_sentence(dictionary, structure):
     :return: предложение
     """
     result = ''
-    for count, item in enumerate(structure, start=1):
+    for item_index, item in enumerate(structure, start=1):
         if item in dictionary:
+            # Часть предложения
             result += get_random_word(dictionary[item])
-        elif item == structure[-1]:
+        elif item_index == len(structure) - 1:
+            # Последний символ
             result += item
         else:
+            # Слово не из словаря
             result += item
-        if count < len(structure) - 1:
+        if item_index < len(structure) - 1:
             result += ' '
     return result.capitalize()
 
